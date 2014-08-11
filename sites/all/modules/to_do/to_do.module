@@ -1,0 +1,52 @@
+<?php
+
+/* This is the module to provide a to-do list to the user.
+    */
+
+
+function to_do_menu() {
+  $items = array();
+  $items['to_do'] = array(
+    'title' => t('To-Do List'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('to_do_to_do_list'),
+    'access arguments' => array('access content'),
+    'description' => t('To-Do List'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+function to_do_to_do_list($form_state) {
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('ADD'),
+    '#required' => TRUE,
+    '#description' => "Please enter your task.",
+    '#size' => 100,
+    '#maxlength' => 10,
+  );
+
+
+  $form['date'] = array(
+    '#type' => 'date_popup',
+    '#title' => "Dated",
+   ); 
+
+
+  // Adds a simple submit button that refreshes the form and clears its contents -- this is the default behavior for forms
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+    
+ 
+  return $form;
+}
+
+function to_do_to_do_list_validate($form, &$form_state) {
+    $is_string = $form_state['values']['name'];
+    dsm($is_string);
+    if (is_string($is_string)){
+      form_set_error('name', 'Please do not enter numbers.');
+    }
+  }

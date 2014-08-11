@@ -1,0 +1,4 @@
+name = To-Do List
+description = Provides the user with a To-Do list
+core = 7.x
+package = Custom
