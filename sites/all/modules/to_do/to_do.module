@@ -19,7 +19,7 @@ function to_do_menu() {
 function to_do_to_do_list($form_state) {
   $form['name'] = array(
     '#type' => 'textfield',
-    '#title' => t('ADD'),
+    '#title' => t('Task'),
     '#required' => TRUE,
     '#description' => "Please enter your task.",
     '#size' => 100,
@@ -29,7 +29,8 @@ function to_do_to_do_list($form_state) {
 
   $form['date'] = array(
     '#type' => 'date_popup',
-    '#title' => "Dated",
+    '#title' => t('When'),
+    '#required' => TRUE,
    ); 
 
 
@@ -44,9 +45,10 @@ function to_do_to_do_list($form_state) {
 }
 
 function to_do_to_do_list_validate($form, &$form_state) {
-    $is_string = $form_state['values']['name'];
-    dsm($is_string);
-    if (is_string($is_string)){
+    $is_numeric =  $form_state['values']['name'];    
+    if (is_numeric($is_numeric)){
       form_set_error('name', 'Please do not enter numbers.');
+    }  else{
+      
     }
   }
